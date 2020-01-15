@@ -1,0 +1,9 @@
+README.md
+setup.py
+pandapy/__init__.py
+pandapy.egg-info/PKG-INFO
+pandapy.egg-info/SOURCES.txt
+pandapy.egg-info/dependency_links.txt
+pandapy.egg-info/not-zip-safe
+pandapy.egg-info/requires.txt
+pandapy.egg-info/top_level.txt

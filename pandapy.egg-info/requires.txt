@@ -1,0 +1,6 @@
+pandas
+numpy
+scipy
+operator
+itertools
+numpy-groupies
