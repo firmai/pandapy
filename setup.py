@@ -1,7 +1,9 @@
-from setuptools import setup
+from setuptools import setup, Command
+import os
+import sys
 
 setup(name='pandapy',
-      version='0.1',
+      version='0.7',
       description='Structured Numpy with Pandas a Click Away',
       url='https://github.com/firmai/pandapy',
       author='snowde',
