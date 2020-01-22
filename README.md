@@ -43,7 +43,7 @@ crm_adj = crm[['Date','Adj_Close']]
 
 
 ```
-**closing**
+closing
 ```
 
 
