@@ -7,11 +7,15 @@ Structured datatypes are designed to be able to mimic ‘structs’ in the C lan
 PandaPy comes with similar functionality like Pandas, such as groupby, pivot, and others. The biggest benefit of this approach is that NumPy dtype(data type) directly maps onto a C structure definition, so the buffer containing the array content can be accessed directly within an appropriately written C program. If you find yourself writing a Python interface to a legacy C or Fortran library that manipulates structured data, you'll probably find structured arrays quite useful. 
 
 
+Getting observations just for the month of May
+
+
 ```
 !pip3 install pandapy
 ```
 
-```
+
+```python
 import pandapy as pp
 import numpy as np
 ```
@@ -764,4 +768,6 @@ plt.show()
 
 
 ![png](PandaPy_files/PandaPy_48_0.png)
+
+
 
