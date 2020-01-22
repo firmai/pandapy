@@ -10,6 +10,12 @@ A Structured NumPy Array is an array of structures. NumPy arrays can only contai
 
 PandaPy comes with similar functionality like Pandas, such as groupby, pivot, and others. The biggest benefit of this approach is that NumPy dtype(data type) directly maps onto a C structure definition, so the buffer containing the array content can be accessed directly within an appropriately written C program. If you find yourself writing a Python interface to a legacy C or Fortran library that manipulates structured data, you'll probably find structured arrays quite useful. 
 
+### Additional
+
+1. Play around with [speed tests here](https://colab.research.google.com/drive/1JqvplTUUciIw2KGkuoCNv196prl3eoiL). 
+2. Test and explore the pacakge with this [Google Colab Notebook](https://colab.research.google.com/drive/1j45o36_FFIof9uzp1DoyzxETD4lfpci5).
+3. Get in touch on [LinkedIn](https://www.linkedin.com/company/firmai) or [Twitter](https://twitter.com/dereknow?lang=en). 
+
 ### Functions
 ----------------------------------
 #### Explorative Functions
