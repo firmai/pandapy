@@ -9,7 +9,7 @@ PandaPy has the speed of NumPy and the usability of Pandas. Structured datatypes
 PandaPy comes with similar functionality like Pandas, such as groupby, pivot, and others. The biggest benefit of this approach is that NumPy dtype(data type) directly maps onto a C structure definition, so the buffer containing the array content can be accessed directly within an appropriately written C program. If you find yourself writing a Python interface to a legacy C or Fortran library that manipulates structured data, you'll probably find structured arrays quite useful. 
 
 ### Functions
-
+----------------------------------
 #### Explorative Functions
 
     Descriptive Statistics (describe)
