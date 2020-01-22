@@ -2,24 +2,24 @@
 
 A Structured NumPy Array is an array of structures. NumPy arrays can only contain one data type, but structured arrays in a sense create an array of homogeneous structures. This is done without moving out of NumPy such as is required with Xarray. For structured arrays the data type only has to be the same per column like an SQL data base. Each column can be another multidimensional object and does not have to conform to the basic NumPy datatypes.
 
-Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. They are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure.
+PandaPy has the speed of NumPy and the usability of Pandas. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. They are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure.  
 
 PandaPy comes with similar functionality like Pandas, such as groupby, pivot, and others. The biggest benefit of this approach is that NumPy dtype(data type) directly maps onto a C structure definition, so the buffer containing the array content can be accessed directly within an appropriately written C program. If you find yourself writing a Python interface to a legacy C or Fortran library that manipulates structured data, you'll probably find structured arrays quite useful. 
 
 
-Getting observations just for the month of May
-
+Install
 
 ```
 !pip3 install pandapy
 ```
 
-
+Load
 ```python
 import pandapy as pp
 import numpy as np
 ```
 
+### Documentation by Example
 Read In Arrays
 
 
@@ -57,7 +57,7 @@ closing
 
 
 
-
+Rename
 ```python
 pp.rename(closing,["AA","AAPL"],["GAP","FAF"])[:5]
 ```
@@ -90,6 +90,7 @@ pp.rename(closing,"AA", "GALLY")[:5]
           dtype=[('GALLY', '<f8'), ('AAPL', '<f8'), ('DAL', '<f8'), ('GE', '<f8'), ('IBM', '<f8'), ('KO', '<f8'), ('MSFT', '<f8'), ('PEP', '<f8'), ('UAL', '<f8')])
 
 
+Statistics
 ```python
 described = pp.describe(closing)
 ```
@@ -98,6 +99,7 @@ described = pp.describe(closing)
 <table><tr><th>Describe<th>observations<th>minimum<th>maximum<th>mean<th>variance<th>skewness<th>kurtosis<tr><th>AA<td>1258.00<td>15.97<td>60.23<td>31.46<td>99.42<td>0.67<td>-0.58<tr><th>AAPL<td>1258.00<td>85.39<td>293.65<td>149.45<td>2119.86<td>0.66<td>-0.28<tr><th>DAL<td>1258.00<td>30.73<td>62.69<td>47.15<td>44.33<td>-0.01<td>-0.78<tr><th>GE<td>1258.00<td>6.42<td>28.67<td>18.85<td>48.45<td>-0.25<td>-1.54<tr><th>IBM<td>1258.00<td>99.83<td>161.17<td>133.35<td>116.28<td>-0.37<td>0.56<tr><th>KO<td>1258.00<td>32.81<td>55.35<td>41.67<td>28.86<td>0.80<td>-0.05<tr><th>MSFT<td>1258.00<td>36.27<td>158.96<td>78.31<td>1102.21<td>0.61<td>-0.82<tr><th>PEP<td>1258.00<td>78.46<td>139.30<td>102.86<td>229.01<td>0.63<td>-0.32<tr><th>UAL<td>1258.00<td>37.75<td>96.70<td>69.22<td>195.65<td>0.02<td>-1.04</table>
 
 
+Drop Column/s
 ```python
 removed = pp.drop(closing,["AA","AAPL","IBM"]) ; removed[:5]
 ```
@@ -110,7 +112,7 @@ removed = pp.drop(closing,["AA","AAPL","IBM"]) ; removed[:5]
 
 
 
-
+Add Column/s
 ```python
 added = pp.add(closing,["GALLY","FAF"],[closing["IBM"],closing["AA"]]); added[:5]  ## set two new columns with that two previous columnns
 ```
@@ -123,6 +125,7 @@ added = pp.add(closing,["GALLY","FAF"],[closing["IBM"],closing["AA"]]); added[:5
           dtype=[('AA', '<f8'), ('AAPL', '<f8'), ('DAL', '<f8'), ('GE', '<f8'), ('IBM', '<f8'), ('KO', '<f8'), ('MSFT', '<f8'), ('PEP', '<f8'), ('UAL', '<f8'), ('GALLY', '<f8'), ('FAF', '<f8')])
 
 
+Concatenate Arrays by Row
 ```python
 concat_row = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="row"); concat_row[:5]
 ```
@@ -131,6 +134,7 @@ concat_row = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="row");
            (42.79874039, 19.90727234), (42.57216263, 19.91554451),
            (43.67792892, 20.15538216)], dtype=[('DAL', '<f8'), ('GE', '<f8')])
 
+Concatenate Arrays by Column
 ```python
 concat_col = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="columns"); concat_col[:5]
 ```
@@ -142,6 +146,7 @@ concat_col = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="column
            (43.67792892, 20.15538216, 84.13523865, 66.63999939)],
           dtype=[('DAL', '<f8'), ('GE', '<f8'), ('PEP', '<f8'), ('UAL', '<f8')])
 
+Concatenate by Array
 ```python
 concat_array = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="array"); concat_array[:5]
 ```
@@ -160,8 +165,7 @@ concat_array = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="arra
             (136.6699981689453, 88.08999633789062)]], dtype=object)
 
 
-
-
+Concatenate by Melt
 ```python
 concat_melt = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="melt"); concat_melt[:5]
 ```
@@ -175,7 +179,7 @@ concat_melt = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="melt"
 
 
 
-
+Merge Array (inner, outer)
 ```python
 merged = pp.merge(tsla_sub, crm_adj, left_on="Date", right_on="Date",how="inner",left_postscript="_TSLA",right_postscript="_CRM"); merged[:5]
 ```
@@ -192,13 +196,13 @@ merged = pp.merge(tsla_sub, crm_adj, left_on="Date", right_on="Date",how="inner"
 
 
 
-
+Replace Individual Values
 ```python
 ## More work to done on replace (structured)
 ## replace(merged,original=317.69000244, replacement=np.nan)[:5]
 ```
 
-
+Print Table
 ```python
 pp.table(merged[:5])
 ```
@@ -213,7 +217,7 @@ pp.table(merged[:5])
 ### You can add the same peculuarities to remove
 ```
 
-
+Add and Concatenate
 ```python
 tsla = pp.add(tsla,["Ticker"], "TSLA", "U10")
 crm = pp.add(crm,["Ticker"], "CRM", "U10")
@@ -259,7 +263,7 @@ dropped = pp.drop(combine,["High","Low","Open"]); dropped[:10]
 
 
 
-
+Pivot Array
 ```python
 piv = pp.pivot(dropped,"Date","Ticker","Adj_Close",display=True)
 ```
@@ -268,14 +272,14 @@ piv = pp.pivot(dropped,"Date","Ticker","Adj_Close",display=True)
 <table><tr><th>Adj_Close<th>CRM<th>TSLA<tr><th>2019-01-02<td>135.55<td>310.12<tr><th>2019-01-03<td>130.40<td>300.36<tr><th>2019-01-04<td>137.96<td>317.69<tr><th>2019-01-07<td>142.22<td>334.96<tr><th>2019-01-08<td>145.72<td>335.35</table>
 
 
-
+Add New Data types 
 ```python
 tsla_extended = pp.add(tsla,"Month",tsla["Date"],'datetime64[M]')
 tsla_extended = pp.add(tsla_extended,"Year",tsla_extended["Date"],'datetime64[Y]')
 
 ```
 
-
+Update Existing Column
 ```python
 ## faster method elsewhere
 year_frame = pp.update(tsla,"Date", [dt.year for dt in tsla["Date"].astype(object)],types="|U10"); year_frame[:5]
@@ -293,7 +297,7 @@ year_frame = pp.update(tsla,"Date", [dt.year for dt in tsla["Date"].astype(objec
 
 
 
-
+Group Arrays By
 ```python
 grouped = pp.group(tsla_extended, ['Ticker','Month','Year'],['mean', 'std', 'min', 'max'], ['Adj_Close','Close'], display=True)
 ```
@@ -302,28 +306,11 @@ grouped = pp.group(tsla_extended, ['Ticker','Month','Year'],['mean', 'std', 'min
 <table><tr><th><th>Ticker<th>Month<th>Year<th>Adj_Close_mean<th>Adj_Close_std<th>Adj_Close_min<th>Adj_Close_max<th>Close_mean<th>Close_std<th>Close_min<th>Close_max<tr><th>0<td>TSLA<td>2019-01-01<td>2019-01-01<td>318.494<td>21.098<td>287.590<td>347.310<td>318.494<td>21.098<td>287.590<td>347.310<tr><th>1<td>TSLA<td>2019-02-01<td>2019-01-01<td>307.728<td>8.053<td>291.230<td>321.350<td>307.728<td>8.053<td>291.230<td>321.350<tr><th>2<td>TSLA<td>2019-03-01<td>2019-01-01<td>277.757<td>8.925<td>260.420<td>294.790<td>277.757<td>8.925<td>260.420<td>294.790<tr><th>3<td>TSLA<td>2019-04-01<td>2019-01-01<td>266.656<td>14.985<td>235.140<td>291.810<td>266.656<td>14.985<td>235.140<td>291.810<tr><th>4<td>TSLA<td>2019-05-01<td>2019-01-01<td>219.715<td>24.040<td>185.160<td>255.340<td>219.715<td>24.040<td>185.160<td>255.340<tr><th>5<td>TSLA<td>2019-06-01<td>2019-01-01<td>213.717<td>12.125<td>178.970<td>226.430<td>213.717<td>12.125<td>178.970<td>226.430<tr><th>6<td>TSLA<td>2019-07-01<td>2019-01-01<td>242.382<td>12.077<td>224.550<td>264.880<td>242.382<td>12.077<td>224.550<td>264.880<tr><th>7<td>TSLA<td>2019-08-01<td>2019-01-01<td>225.103<td>7.831<td>211.400<td>238.300<td>225.103<td>7.831<td>211.400<td>238.300<tr><th>8<td>TSLA<td>2019-09-01<td>2019-01-01<td>237.261<td>8.436<td>220.680<td>247.100<td>237.261<td>8.436<td>220.680<td>247.100<tr><th>9<td>TSLA<td>2019-10-01<td>2019-01-01<td>266.355<td>31.463<td>231.430<td>328.130<td>266.355<td>31.463<td>231.430<td>328.130<tr><th>10<td>TSLA<td>2019-11-01<td>2019-01-01<td>338.300<td>13.226<td>313.310<td>359.520<td>338.300<td>13.226<td>313.310<td>359.520<tr><th>11<td>TSLA<td>2019-12-01<td>2019-01-01<td>377.695<td>36.183<td>330.370<td>430.940<td>377.695<td>36.183<td>330.370<td>430.940</table>
 
 
-
+Convert Array to Pandas
 ```python
 grouped_frame = pp.pandas(grouped); grouped_frame.head()
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -418,7 +405,7 @@ grouped_frame = pp.pandas(grouped); grouped_frame.head()
 
 
 
-
+From Pandas to Structured
 ```python
 struct = pp.structured(grouped_frame); struct[:5]
 ```
@@ -435,7 +422,7 @@ struct = pp.structured(grouped_frame); struct[:5]
 
 
 
-
+Shift Column
 ```python
 pp.shift(merged["Adj_Close_TSLA"],1)[:5]
 ```
@@ -448,7 +435,7 @@ pp.shift(merged["Adj_Close_TSLA"],1)[:5]
 
 
 
-
+Multiple Lags for Column
 ```python
 tsla_lagged = pp.lags(tsla_extended, "Adj_Close", 5); tsla_lagged[:5]
 ```
@@ -465,7 +452,7 @@ tsla_lagged = pp.lags(tsla_extended, "Adj_Close", 5); tsla_lagged[:5]
 
 
 
-
+Correlation Array
 ```python
 correlated = pp.corr(closing)
 ```
@@ -474,7 +461,7 @@ correlated = pp.corr(closing)
 <table><tr><th>Correlation<th>AA<th>AAPL<th>DAL<th>GE<th>IBM<th>KO<th>MSFT<th>PEP<th>UAL<tr><th>AA<td>1.00<td>0.21<td>0.24<td>-0.17<td>0.39<td>-0.09<td>0.05<td>-0.04<td>0.12<tr><th>AAPL<td>0.21<td>1.00<td>0.86<td>-0.83<td>0.22<td>0.85<td>0.94<td>0.85<td>0.82<tr><th>DAL<td>0.24<td>0.86<td>1.00<td>-0.78<td>0.14<td>0.79<td>0.86<td>0.78<td>0.86<tr><th>GE<td>-0.17<td>-0.83<td>-0.78<td>1.00<td>0.06<td>-0.76<td>-0.86<td>-0.69<td>-0.76<tr><th>IBM<td>0.39<td>0.22<td>0.14<td>0.06<td>1.00<td>0.07<td>0.15<td>0.24<td>0.18<tr><th>KO<td>-0.09<td>0.85<td>0.79<td>-0.76<td>0.07<td>1.00<td>0.94<td>0.96<td>0.74<tr><th>MSFT<td>0.05<td>0.94<td>0.86<td>-0.86<td>0.15<td>0.94<td>1.00<td>0.93<td>0.83<tr><th>PEP<td>-0.04<td>0.85<td>0.78<td>-0.69<td>0.24<td>0.96<td>0.93<td>1.00<td>0.75<tr><th>UAL<td>0.12<td>0.82<td>0.86<td>-0.76<td>0.18<td>0.74<td>0.83<td>0.75<td>1.00</table>
 
 
-
+Log Returns
 ```python
 pp.returns(closing,"IBM",type="log")
 ```
@@ -487,7 +474,7 @@ pp.returns(closing,"IBM",type="log")
 
 
 
-
+Normal Returns
 ```python
 loga = pp.returns(closing,"IBM",type="normal"); loga
 ```
@@ -500,7 +487,7 @@ loga = pp.returns(closing,"IBM",type="normal"); loga
 
 
 
-
+Add Column
 ```python
 close_ret = pp.add(closing,"IBM_log_return",loga); close_ret[:5]
 ```
@@ -517,7 +504,7 @@ close_ret = pp.add(closing,"IBM_log_return",loga); close_ret[:5]
 
 
 
-
+Drop Array Rows where Null
 ```python
 close_ret_na = pp.dropnarow(close_ret, "IBM_log_return"); close_ret[:5]
 ```
@@ -534,7 +521,7 @@ close_ret_na = pp.dropnarow(close_ret, "IBM_log_return"); close_ret[:5]
 
 
 
-
+Portfolio Value from Log Return
 ```python
 pp.portfolio_value(close_ret_na, "IBM_log_return", type="log")
 ```
@@ -547,7 +534,7 @@ pp.portfolio_value(close_ret_na, "IBM_log_return", type="log")
 
 
 
-
+Cummulative Value from Log Return
 ```python
 pp.cummulative_return(close_ret_na, "IBM_log_return", type="log")
 ```
@@ -560,7 +547,7 @@ pp.cummulative_return(close_ret_na, "IBM_log_return", type="log")
 
 
 
-
+Fillna Mean
 ```python
 pp.fillna(tsla_lagged,type="mean")[:5]
 ```
@@ -577,7 +564,7 @@ pp.fillna(tsla_lagged,type="mean")[:5]
 
 
 
-
+Fillna Value
 ```python
 pp.fillna(tsla_lagged,type="value",value=-999999)[:5]
 ```
@@ -594,7 +581,7 @@ pp.fillna(tsla_lagged,type="value",value=-999999)[:5]
 
 
 
-
+Fillna Forward Fill
 ```python
 pp.fillna(tsla_lagged,type="ffill")[:5]
 ```
@@ -611,7 +598,7 @@ pp.fillna(tsla_lagged,type="ffill")[:5]
 
 
 
-
+Fillna Backward Fill
 ```python
 pp.fillna(tsla_lagged,type="bfill")[:5]
 ```
@@ -627,25 +614,7 @@ pp.fillna(tsla_lagged,type="bfill")[:5]
           dtype={'names':['High','Low','Open','Close','Volume','Adj_Close','Adj_Close_lag_1','Adj_Close_lag_2','Adj_Close_lag_3','Adj_Close_lag_4','Adj_Close_lag_5'], 'formats':['<f8','<f8','<f8','<f8','<i8','<f8','<f8','<f8','<f8','<f8','<f8'], 'offsets':[0,8,16,24,32,40,112,120,128,136,144], 'itemsize':152})
 
 
-
-
-```python
-pp.fillna(tsla_lagged,type="ffill")[:5]
-```
-
-
-
-
-    array([(315.13000488, 298.79998779, 306.1000061 , 310.11999512, 11658600, 310.11999512,          nan,          nan,          nan,          nan, nan),
-           (309.3999939 , 297.38000488, 307.        , 300.35998535,  6965200, 300.35998535, 310.11999512,          nan,          nan,          nan, nan),
-           (318.        , 302.73001099, 306.        , 317.69000244,  7394100, 317.69000244, 300.35998535, 310.11999512,          nan,          nan, nan),
-           (336.73999023, 317.75      , 321.72000122, 334.95999146,  7551200, 334.95999146, 317.69000244, 300.35998535, 310.11999512,          nan, nan),
-           (344.01000977, 327.01998901, 341.95999146, 335.3500061 ,  7008500, 335.3500061 , 334.95999146, 317.69000244, 300.35998535, 310.11999512, nan)],
-          dtype={'names':['High','Low','Open','Close','Volume','Adj_Close','Adj_Close_lag_1','Adj_Close_lag_2','Adj_Close_lag_3','Adj_Close_lag_4','Adj_Close_lag_5'], 'formats':['<f8','<f8','<f8','<f8','<i8','<f8','<f8','<f8','<f8','<f8','<f8'], 'offsets':[0,8,16,24,32,40,112,120,128,136,144], 'itemsize':152})
-
-
-
-
+Print Table
 ```python
 pp.table(tsla_lagged,5)
 ```
@@ -654,7 +623,7 @@ pp.table(tsla_lagged,5)
 <table><tr><th><th>High<th>Low<th>Open<th>Close<th>Volume<th>Adj_Close<th>Date<th>Ticker<th>Month<th>Year<th>Adj_Close_lag_1<th>Adj_Close_lag_2<th>Adj_Close_lag_3<th>Adj_Close_lag_4<th>Adj_Close_lag_5<tr><th>0<td>315.130<td>298.800<td>306.100<td>310.120<td>11658600<td>310.120<td>2019-01-02<td>TSLA<td>2019-01-01<td>2019-01-01<td>nan<td>nan<td>nan<td>nan<td>nan<tr><th>1<td>309.400<td>297.380<td>307.000<td>300.360<td>6965200<td>300.360<td>2019-01-03<td>TSLA<td>2019-01-01<td>2019-01-01<td>310.120<td>nan<td>nan<td>nan<td>nan<tr><th>2<td>318.000<td>302.730<td>306.000<td>317.690<td>7394100<td>317.690<td>2019-01-04<td>TSLA<td>2019-01-01<td>2019-01-01<td>300.360<td>310.120<td>nan<td>nan<td>nan<tr><th>3<td>336.740<td>317.750<td>321.720<td>334.960<td>7551200<td>334.960<td>2019-01-07<td>TSLA<td>2019-01-01<td>2019-01-01<td>317.690<td>300.360<td>310.120<td>nan<td>nan<tr><th>4<td>344.010<td>327.020<td>341.960<td>335.350<td>7008500<td>335.350<td>2019-01-08<td>TSLA<td>2019-01-01<td>2019-01-01<td>334.960<td>317.690<td>300.360<td>310.120<td>nan</table>
 
 
-
+Outliers
 ```python
 signal = tsla_lagged["Volume"]
 z_signal = (signal - np.mean(signal)) / np.std(signal)
@@ -692,7 +661,7 @@ plt.show()
 ![png](PandaPy_files/PandaPy_46_0.png)
 
 
-
+Remove Noise
 ```python
 price_signal = tsla_lagged["Close"]
 removed_signal = pp.removal(price_signal, 30)
