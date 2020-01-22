@@ -23,7 +23,7 @@ import numpy as np
 Read In Arrays
 
 
-```
+```python
 # First Example
 multiple_stocks = pp.read('https://github.com/firmai/random-assets-two/blob/master/numpy/multiple_stocks.csv?raw=true')
 closing = multiple_stocks[['Ticker','Date','Adj_Close']]
@@ -58,7 +58,7 @@ closing
 
 
 
-```
+```python
 pp.rename(closing,["AA","AAPL"],["GAP","FAF"])[:5]
 ```
 
@@ -75,7 +75,7 @@ pp.rename(closing,["AA","AAPL"],["GAP","FAF"])[:5]
 
 
 
-```
+```python
 pp.rename(closing,"AA", "GALLY")[:5]
 ```
 
@@ -90,36 +90,7 @@ pp.rename(closing,"AA", "GALLY")[:5]
           dtype=[('GALLY', '<f8'), ('AAPL', '<f8'), ('DAL', '<f8'), ('GE', '<f8'), ('IBM', '<f8'), ('KO', '<f8'), ('MSFT', '<f8'), ('PEP', '<f8'), ('UAL', '<f8')])
 
 
-
-
-```
-def describe(array):
-  fill_array = np.zeros(shape=(7,len(array.dtype.names)))
-  col_keys = ["observations", "minimum", "maximum", "mean", "variance", "skewness", "kurtosis"]
-  en_dec = 0 
-  names = []
-  for en, arr in enumerate(array.dtype.names): #do not need the loop at this point, but looks prettier
-    
-    en = en - en_dec
-    try:
-      desc = stats.describe(array[arr])
-      names.append(arr)
-      
-    except:
-      fill_array = np.delete(fill_array,en,1)
-      en_dec = en_dec + 1
-      continue
-    col_values = [desc[0], desc[1][0], desc[1][1], desc[2], desc[3], desc[4], desc[5]]
-    # newrow = [1,2,3]
-    # A = numpy.vstack([A, newrow])
-    fill_array[:,en] = col_values
-  fill_array = np.round(fill_array,3)
-  table(fill_array.T,None, names,col_keys,"Describe")
-  return fill_array
-```
-
-
-```
+```python
 described = pp.describe(closing)
 ```
 
@@ -127,14 +98,9 @@ described = pp.describe(closing)
 <table><tr><th>Describe<th>observations<th>minimum<th>maximum<th>mean<th>variance<th>skewness<th>kurtosis<tr><th>AA<td>1258.00<td>15.97<td>60.23<td>31.46<td>99.42<td>0.67<td>-0.58<tr><th>AAPL<td>1258.00<td>85.39<td>293.65<td>149.45<td>2119.86<td>0.66<td>-0.28<tr><th>DAL<td>1258.00<td>30.73<td>62.69<td>47.15<td>44.33<td>-0.01<td>-0.78<tr><th>GE<td>1258.00<td>6.42<td>28.67<td>18.85<td>48.45<td>-0.25<td>-1.54<tr><th>IBM<td>1258.00<td>99.83<td>161.17<td>133.35<td>116.28<td>-0.37<td>0.56<tr><th>KO<td>1258.00<td>32.81<td>55.35<td>41.67<td>28.86<td>0.80<td>-0.05<tr><th>MSFT<td>1258.00<td>36.27<td>158.96<td>78.31<td>1102.21<td>0.61<td>-0.82<tr><th>PEP<td>1258.00<td>78.46<td>139.30<td>102.86<td>229.01<td>0.63<td>-0.32<tr><th>UAL<td>1258.00<td>37.75<td>96.70<td>69.22<td>195.65<td>0.02<td>-1.04</table>
 
 
-
-```
+```python
 removed = pp.drop(closing,["AA","AAPL","IBM"]) ; removed[:5]
 ```
-
-
-
-
     array([(44.57522202, 20.72605705, 35.80251312, 41.9791832 , 81.51140594, 66.33999634),
            (43.83200836, 20.34561157, 35.80251312, 41.59314346, 80.89860535, 66.15000153),
            (42.79874039, 19.90727234, 36.07437897, 40.98268127, 80.28580475, 64.58000183),
@@ -145,12 +111,9 @@ removed = pp.drop(closing,["AA","AAPL","IBM"]) ; removed[:5]
 
 
 
-```
+```python
 added = pp.add(closing,["GALLY","FAF"],[closing["IBM"],closing["AA"]]); added[:5]  ## set two new columns with that two previous columnns
 ```
-
-
-
 
     array([(37.24206924, 100.45429993, 44.57522202, 20.72605705, 130.59109497, 35.80251312, 41.9791832 , 81.51140594, 66.33999634, 130.59109497, 37.24206924),
            (35.08446503,  97.62433624, 43.83200836, 20.34561157, 128.53627014, 35.80251312, 41.59314346, 80.89860535, 66.15000153, 128.53627014, 35.08446503),
@@ -160,28 +123,17 @@ added = pp.add(closing,["GALLY","FAF"],[closing["IBM"],closing["AA"]]); added[:5
           dtype=[('AA', '<f8'), ('AAPL', '<f8'), ('DAL', '<f8'), ('GE', '<f8'), ('IBM', '<f8'), ('KO', '<f8'), ('MSFT', '<f8'), ('PEP', '<f8'), ('UAL', '<f8'), ('GALLY', '<f8'), ('FAF', '<f8')])
 
 
-
-
-```
+```python
 concat_row = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="row"); concat_row[:5]
 ```
-
-
-
 
     array([(44.57522202, 20.72605705), (43.83200836, 20.34561157),
            (42.79874039, 19.90727234), (42.57216263, 19.91554451),
            (43.67792892, 20.15538216)], dtype=[('DAL', '<f8'), ('GE', '<f8')])
 
-
-
-
-```
+```python
 concat_col = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="columns"); concat_col[:5]
 ```
-
-
-
 
     array([(44.57522202, 20.72605705, 81.51140594, 66.33999634),
            (43.83200836, 20.34561157, 80.89860535, 66.15000153),
@@ -190,15 +142,9 @@ concat_col = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="column
            (43.67792892, 20.15538216, 84.13523865, 66.63999939)],
           dtype=[('DAL', '<f8'), ('GE', '<f8'), ('PEP', '<f8'), ('UAL', '<f8')])
 
-
-
-
-```
+```python
 concat_array = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="array"); concat_array[:5]
 ```
-
-
-
 
     array([[(44.57522201538086, 20.726057052612305),
             (43.832008361816406, 20.345611572265625),
