@@ -8,6 +8,52 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 
 
 
+#### Explorative Functions
+
+Descriptive Statistics (describe)
+Correlation Array (corr)
+
+
+#### Finance Functions
+
+Returns (returns)
+Portfolio Value (portfolio_value)
+Cummulative Value (cummulative_return)
+Column Lags (lags)
+
+#### Array Structure
+
+Read In Arrays (read)
+To Pandas (unstructured)
+Pandas to Structured (structured)
+To Unstructured (to_unstruct)
+To Structured (to_struct)
+Print Table (table)
+
+#### Array Functions
+
+Drop Null Rows (dropnarow)
+Drop Column/s (drop)
+Add Column/s (add)
+Concatenate (concat)
+Merge (merge)
+Group by (group)
+Pivot (pivot)
+Replace Values (replace)
+Fill Nulls (fillna)
+Shift Column (shift)
+Update (update)
+Rename (rename)
+
+
+
+
+
+
+
+
+Statistics
+
 
 ### Documentation by Example
 
