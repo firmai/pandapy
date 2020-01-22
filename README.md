@@ -162,7 +162,7 @@ concat_array = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="arra
 
 
 
-```
+```python
 concat_melt = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="melt"); concat_melt[:5]
 ```
 
@@ -176,7 +176,7 @@ concat_melt = pp.concat(removed[["DAL","GE"]], added[["PEP","UAL"]], type="melt"
 
 
 
-```
+```python
 merged = pp.merge(tsla_sub, crm_adj, left_on="Date", right_on="Date",how="inner",left_postscript="_TSLA",right_postscript="_CRM"); merged[:5]
 ```
 
@@ -193,13 +193,13 @@ merged = pp.merge(tsla_sub, crm_adj, left_on="Date", right_on="Date",how="inner"
 
 
 
-```
+```python
 ## More work to done on replace (structured)
 ## replace(merged,original=317.69000244, replacement=np.nan)[:5]
 ```
 
 
-```
+```python
 pp.table(merged[:5])
 ```
 
@@ -208,13 +208,13 @@ pp.table(merged[:5])
 
 
 
-```
+```python
 ### This is the new function that you should include above
 ### You can add the same peculuarities to remove
 ```
 
 
-```
+```python
 tsla = pp.add(tsla,["Ticker"], "TSLA", "U10")
 crm = pp.add(crm,["Ticker"], "CRM", "U10")
 combine = pp.concat(tsla[0:5], crm[0:5], type="row"); combine
@@ -238,7 +238,7 @@ combine = pp.concat(tsla[0:5], crm[0:5], type="row"); combine
 
 
 
-```
+```python
 dropped = pp.drop(combine,["High","Low","Open"]); dropped[:10]
 ```
 
@@ -260,7 +260,7 @@ dropped = pp.drop(combine,["High","Low","Open"]); dropped[:10]
 
 
 
-```
+```python
 piv = pp.pivot(dropped,"Date","Ticker","Adj_Close",display=True)
 ```
 
@@ -269,14 +269,14 @@ piv = pp.pivot(dropped,"Date","Ticker","Adj_Close",display=True)
 
 
 
-```
+```python
 tsla_extended = pp.add(tsla,"Month",tsla["Date"],'datetime64[M]')
 tsla_extended = pp.add(tsla_extended,"Year",tsla_extended["Date"],'datetime64[Y]')
 
 ```
 
 
-```
+```python
 ## faster method elsewhere
 year_frame = pp.update(tsla,"Date", [dt.year for dt in tsla["Date"].astype(object)],types="|U10"); year_frame[:5]
 ```
@@ -294,9 +294,8 @@ year_frame = pp.update(tsla,"Date", [dt.year for dt in tsla["Date"].astype(objec
 
 
 
-```
+```python
 grouped = pp.group(tsla_extended, ['Ticker','Month','Year'],['mean', 'std', 'min', 'max'], ['Adj_Close','Close'], display=True)
-
 ```
 
 
@@ -304,7 +303,7 @@ grouped = pp.group(tsla_extended, ['Ticker','Month','Year'],['mean', 'std', 'min
 
 
 
-```
+```python
 grouped_frame = pp.pandas(grouped); grouped_frame.head()
 ```
 
@@ -420,7 +419,7 @@ grouped_frame = pp.pandas(grouped); grouped_frame.head()
 
 
 
-```
+```python
 struct = pp.structured(grouped_frame); struct[:5]
 ```
 
@@ -437,7 +436,7 @@ struct = pp.structured(grouped_frame); struct[:5]
 
 
 
-```
+```python
 pp.shift(merged["Adj_Close_TSLA"],1)[:5]
 ```
 
@@ -450,7 +449,7 @@ pp.shift(merged["Adj_Close_TSLA"],1)[:5]
 
 
 
-```
+```python
 tsla_lagged = pp.lags(tsla_extended, "Adj_Close", 5); tsla_lagged[:5]
 ```
 
@@ -467,7 +466,7 @@ tsla_lagged = pp.lags(tsla_extended, "Adj_Close", 5); tsla_lagged[:5]
 
 
 
-```
+```python
 correlated = pp.corr(closing)
 ```
 
@@ -476,7 +475,7 @@ correlated = pp.corr(closing)
 
 
 
-```
+```python
 pp.returns(closing,"IBM",type="log")
 ```
 
@@ -489,7 +488,7 @@ pp.returns(closing,"IBM",type="log")
 
 
 
-```
+```python
 loga = pp.returns(closing,"IBM",type="normal"); loga
 ```
 
@@ -502,7 +501,7 @@ loga = pp.returns(closing,"IBM",type="normal"); loga
 
 
 
-```
+```python
 close_ret = pp.add(closing,"IBM_log_return",loga); close_ret[:5]
 ```
 
@@ -519,7 +518,7 @@ close_ret = pp.add(closing,"IBM_log_return",loga); close_ret[:5]
 
 
 
-```
+```python
 close_ret_na = pp.dropnarow(close_ret, "IBM_log_return"); close_ret[:5]
 ```
 
@@ -536,7 +535,7 @@ close_ret_na = pp.dropnarow(close_ret, "IBM_log_return"); close_ret[:5]
 
 
 
-```
+```python
 pp.portfolio_value(close_ret_na, "IBM_log_return", type="log")
 ```
 
@@ -549,7 +548,7 @@ pp.portfolio_value(close_ret_na, "IBM_log_return", type="log")
 
 
 
-```
+```python
 pp.cummulative_return(close_ret_na, "IBM_log_return", type="log")
 ```
 
@@ -562,7 +561,7 @@ pp.cummulative_return(close_ret_na, "IBM_log_return", type="log")
 
 
 
-```
+```python
 pp.fillna(tsla_lagged,type="mean")[:5]
 ```
 
@@ -579,7 +578,7 @@ pp.fillna(tsla_lagged,type="mean")[:5]
 
 
 
-```
+```python
 pp.fillna(tsla_lagged,type="value",value=-999999)[:5]
 ```
 
@@ -596,7 +595,7 @@ pp.fillna(tsla_lagged,type="value",value=-999999)[:5]
 
 
 
-```
+```python
 pp.fillna(tsla_lagged,type="ffill")[:5]
 ```
 
@@ -613,7 +612,7 @@ pp.fillna(tsla_lagged,type="ffill")[:5]
 
 
 
-```
+```python
 pp.fillna(tsla_lagged,type="bfill")[:5]
 ```
 
@@ -630,7 +629,7 @@ pp.fillna(tsla_lagged,type="bfill")[:5]
 
 
 
-```
+```python
 pp.fillna(tsla_lagged,type="ffill")[:5]
 ```
 
@@ -647,7 +646,7 @@ pp.fillna(tsla_lagged,type="ffill")[:5]
 
 
 
-```
+```python
 pp.table(tsla_lagged,5)
 ```
 
@@ -656,18 +655,18 @@ pp.table(tsla_lagged,5)
 
 
 
-```
+```python
 signal = tsla_lagged["Volume"]
 z_signal = (signal - np.mean(signal)) / np.std(signal)
 ```
 
 
-```
+```python
 tsla_lagged = pp.add(tsla_lagged,"z_signal_volume",z_signal)
 ```
 
 
-```
+```python
 outliers = pp.detect(tsla_lagged["z_signal_volume"]); outliers
 ```
 
@@ -679,7 +678,7 @@ outliers = pp.detect(tsla_lagged["z_signal_volume"]); outliers
 
 
 
-```
+```python
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(15, 7))
@@ -694,14 +693,14 @@ plt.show()
 
 
 
-```
+```python
 price_signal = tsla_lagged["Close"]
 removed_signal = pp.removal(price_signal, 30)
 noise = pp.get(price_signal, removed_signal)
 ```
 
 
-```
+```python
 plt.figure(figsize=(15, 7))
 plt.subplot(2, 1, 1)
 plt.plot(removed_signal)
