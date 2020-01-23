@@ -20,7 +20,8 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 4. Use ```table(array)``` to get a pandas looking table printout
 
 ### Functions
-##### Plus Speed Over Pandas (x)
+
+#### SPEED SPEED SPEED !!! -> Speed Over Pandas Follow the X i.e. (5X), (50X)
 ----------------------------------
 
 #### Array Structure
