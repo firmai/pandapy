@@ -14,47 +14,55 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 
 1. Play around with [speed tests here](https://colab.research.google.com/drive/1JqvplTUUciIw2KGkuoCNv196prl3eoiL). 
 2. Test and explore the pacakge with this [Google Colab Notebook](https://colab.research.google.com/drive/1j45o36_FFIof9uzp1DoyzxETD4lfpci5).
-3. Get in touch on [LinkedIn](https://www.linkedin.com/company/firmai) or [Twitter](https://twitter.com/dereknow?lang=en). 
+3. Get in touch on [LinkedIn](https://www.linkedin.com/company/firmai) or [Twitter](https://twitter.com/dereknow?lang=en).
+4. Use table(array) to get a pandas looking table printout
 
 ### Functions
+##### Plus Speed Over Pandas (x)
 ----------------------------------
 #### Explorative Functions
 
-    Descriptive Statistics (describe)
-    Correlation Array (corr)
-
+    Descriptive Statistics (describe) (5x)
+    Correlation Array (corr) (2x)
 
 #### Finance Functions
 
-    Returns (returns)
-    Portfolio Value (portfolio_value)
-    Cummulative Value (cummulative_return)
-    Column Lags (lags)
+    Returns (returns) (50x)  
+    Portfolio Value (portfolio_value) (50x)
+    Cummulative Value (cummulative_return) (50x)
+    Column Lags (lags) (7x)
 
 #### Array Structure
 
     Read In Arrays (read)
-    To Pandas (unstructured)
-    Pandas to Structured (structured)
-    To Unstructured (to_unstruct)
-    To Structured (to_struct)
-    Print Table (table)
+    To Pandas (unstructured) 
+    Pandas to Structured (structured) 
+    To Unstructured (to_unstruct) 
+    To Structured (to_struct) 
+    Print Table (table) 
 
 #### Array Functions
 
-    Drop Null Rows (dropnarow)
-    Drop Column/s (drop)
-    Add Column/s (add)
-    Concatenate (concat)
-    Merge (merge)
-    Group by (group)
-    Pivot (pivot)
-    Replace Values (replace)
-    Fill Nulls (fillna)
-    Shift Column (shift)
-    Update (update)
-    Rename (rename)
+    Drop Null Rows (dropnarow) (30x)
+    Drop Column/s (drop) (100x)
+    Add Column/s (add) (3x)
+    Concatenate (concat) (rows 25x columns 70x)
+    Merge (merge) (2x)
+    Group by (group) (10x)
+    Pivot (pivot) (20x)
+    Fill Nulls (fillna) (20x)
+    Shift Column (shift) (50x)
+    Rename (rename) (500x)
 
+#### Other Speed Tests
+
+    Update (array[col] = values) (60x)
+    Addition (array[col] + array[col]) (80x)
+    Multiplication (array[col] * array[col]) (80x)
+    Log (np.log(array[col]) (25x)
+    
+    
+_note speed tests done on financial dataset only_
 
 ### Documentation by Example
 
