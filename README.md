@@ -20,6 +20,16 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 ### Functions
 ##### Plus Speed Over Pandas (x)
 ----------------------------------
+
+#### Array Structure
+
+    Read In Arrays (read)
+    To Pandas (unstructured) 
+    Pandas to Structured (structured) 
+    To Unstructured (to_unstruct) 
+    To Structured (to_struct) 
+    Print Table (table) 
+
 #### Explorative Functions
 
     Descriptive Statistics (describe) (5x)
@@ -31,15 +41,6 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
     Portfolio Value (portfolio_value) (50x)
     Cummulative Value (cummulative_return) (50x)
     Column Lags (lags) (7x)
-
-#### Array Structure
-
-    Read In Arrays (read)
-    To Pandas (unstructured) 
-    Pandas to Structured (structured) 
-    To Unstructured (to_unstruct) 
-    To Structured (to_struct) 
-    Print Table (table) 
 
 #### Array Functions
 
