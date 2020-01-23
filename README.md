@@ -1,6 +1,8 @@
 ## PandaPy
 
-PandaPy has the speed of NumPy and the usability of Pandas. PandaPy software similar to the original Pandas project is being developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure.    
+PandaPy has the speed of NumPy and the usability of Pandas. PandaPy software similar to the original Pandas project is being developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
+
+**Note this project is only a week old, there is still room for improvement, any feedback would be appreciated**
 
 ### Description
 
