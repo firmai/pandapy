@@ -1,5 +1,16 @@
 ## PandaPy
 
+**Install**
+
+```
+!pip3 install pandapy
+```
+
+**Load**
+```python
+import pandapy as pp
+```
+
 #### Why PandaPy? 
 
 1. Maintains the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
@@ -88,17 +99,6 @@ _note speed tests done on financial dataset only_
 
 ------------------------
 
-**Install**
-
-```
-!pip3 install pandapy
-```
-
-**Load**
-```python
-import pandapy as pp
-import numpy as np
-```
 
 **Read In Arrays**
 
