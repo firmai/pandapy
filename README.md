@@ -8,8 +8,8 @@
 4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
 5. For table functions (i.e., group, pivot, drop, concat, fillna) PandaPy is 5x - 100x times faster than Pandas.
 6. For most use cases, PandaPy is faster than Dask, Ray and Pandas.
-7. The best package for performance for table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than even PandaPy. 
-8. The problem is that datatable is slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, and have very few complementary libraries, e.g. matplotlib. 
+7. The best package for performance for table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than even that of PandaPy. 
+8. The problem is that datatable is 5x - 10x slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, have very few complementary libraries, e.g. matplotlib, and doesn't leave you in a Numpy datatype.  
 
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
 
