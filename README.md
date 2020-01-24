@@ -1,5 +1,7 @@
 ## PandaPy
 
+![](PandaPy_files/d5xurea-875a26b2-8f94-4593-bb3d-4af362febda0.jpg)
+
 **Install**
 
 ```
