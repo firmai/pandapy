@@ -5,6 +5,8 @@
 1. Maintain the full functionality and speed of structured NumPy (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
+4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
+5. For table functions (i.e., group, pivot, drop, concat, fillna) PandaPy is 5x - 100x times faster than Pandas.
 
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
 
