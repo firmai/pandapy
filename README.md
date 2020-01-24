@@ -8,7 +8,7 @@
 4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
 5. For table functions (i.e., group, pivot, drop, concat, fillna) PandaPy is 5x - 100x times faster than Pandas.
 6. For most use cases, PandaPy is faster than Dask, Modin Ray and Pandas.
-7. The best package for performance for table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than  PandaPy. 
+7. The best competing python package for performance on table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than  PandaPy. 
 8. The problem is that datatable is 5x - 10x slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, have very few complementary libraries, e.g. matplotlib, and doesn't leave you in a Numpy datatype. 
 10. For finance applications the speed of simple calculations takes preference over table functions.
 9. PandaPy is not created to allow you to scale up to clusters for multiple computer processing like Dask, Modin, and Spark, instead its focus is on speed and usability within a single computer's Memory.
