@@ -2,7 +2,7 @@
 
 #### Why PandaPy? 
 
-1. Maintain the full functionality and speed of structured NumPy (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
+1. Maintain the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
 4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
