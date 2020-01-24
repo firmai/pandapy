@@ -1,5 +1,11 @@
 ## PandaPy
 
+#### Why PandaPy? 
+
+1. Maintain the full functionality and speed of structured NumPy (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
+2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
+3. 
+
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
 
 **Note this project is only a week old, much room for improvement, all feedback appreciated (issues tab)**
