@@ -10,6 +10,9 @@
 6. For most use cases, PandaPy is faster than Dask, Ray and Pandas.
 7. The best package for performance for table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than even that of PandaPy. 
 8. The problem is that datatable is 5x - 10x slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, have very few complementary libraries, e.g. matplotlib, and doesn't leave you in a Numpy datatype.  
+9. PandaPy is not created to allow you to scale up to clusters for multiple computer processing like Dask and Modin, instead its focus is on speed and usability within a single computer's Memory.
+10. Machines are getting large, EC2 X1 has 2TB of RAM and is remarkably affordable. If it can be done on a single machine then it should be done on a single machine. Quoting Dask - "For data that fits into RAM, Pandas can often be faster and easier to use than Dask DataFrame"
+11. If your dataset is large, it is best to load it with datatable or pyspark and convert it to structured Numpy, if it is extremely large Dask or Modin
 
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
 
