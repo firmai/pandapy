@@ -3,7 +3,7 @@ import os
 import sys
 
 setup(name='pandapy',
-      version='0.8',
+      version='2.1',
       description='Structured Numpy with Pandas a Click Away',
       url='https://github.com/firmai/pandapy',
       author='snowde',
@@ -14,14 +14,10 @@ setup(name='pandapy',
           'pandas',
           'numpy',
           'scipy',
-          'operator',
-          'itertools',
           'numpy-groupies',
           'numba',
           'datetime',
-          'python-dateutil',
-          'ipython',
-          'html'
+          'ipython'
 
       ],
       zip_safe=False)
