@@ -17,7 +17,7 @@
 
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
 
-**Note this project is only a week old, much room for improvement, all feedback appreciated (issues tab)**
+**Note this is a fledgling project, much room for improvement, all feedback appreciated (issues tab)**
 
 ### Description
 
@@ -29,14 +29,14 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 
 ### Additional
 
-1. Play around with [speed tests here](https://colab.research.google.com/drive/1JqvplTUUciIw2KGkuoCNv196prl3eoiL). 
+1. Play around with [speed tests here](https://colab.research.google.com/drive/1JqvplTUUciIw2KGkuoCNv196prl3eoiL) and some more [here](https://colab.research.google.com/drive/1I4sJOM8o4RAqHp3YU1nlx92UxwoC3WB-).
 2. Test and explore the package with this [Google Colab Notebook](https://colab.research.google.com/drive/1j45o36_FFIof9uzp1DoyzxETD4lfpci5).
 3. Get in touch on [LinkedIn](https://www.linkedin.com/company/firmai) or [Twitter](https://twitter.com/dereknow?lang=en).
 4. Use ```table(array)``` to get a pandas looking table printout
 
 ### Functions
 
-#### SPEED SPEED SPEED !!! -> Speed Over Pandas Follow the X i.e. (5X), (50X)
+#### PandaPy Speed Over Pandas In (X) e.g., (dropnarow) (30x)
 ----------------------------------
 
 #### Array Structure
