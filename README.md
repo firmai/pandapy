@@ -13,11 +13,13 @@ import pandapy as pp
 
 #### Why PandaPy? 
 
+
 1. Maintains the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
+1. If you have smaller pandas dataframes (<50K number of records) in a production environment, then it is worth considering PandaPy, you will see a significant speed up and reduction in memory usage.
 1. When using mized data types (int, float, datatime, str), PandaPy generally consumes (roughly a 1/3rd) less memory than Pandas.
 1. Pandas outperform PandaPy at the same point when Pandas outperform __NumPy__. NumPy generally performs better than pandas for 50K rows or less. Pandas generally performs better than numpy for 500K rows or more; from 50K to 500K rows it is a toss up depending on the operation.
-1. Because both Pandas and PandaPy is built on NumPy, the performance difference can only be attributed to Pandas overhead. For larger datasets Pandas' hash tables and columnar data format gives it the upperhand on many operations. 
-1. The performance claims only hold for small datasets, 1,000-100,000 numpy rows. The PandaPy operations that improve relative to Pandas as the number of row increase, is rename, column drop, fillna mean, correlation matrix, filter (npx > 0), value reads(a=array[col]), atomic functions, occasions where NumExpr can be used, and np calculations differences even out (np.log, np.exp, etc).
+1. Because both Pandas and PandaPy is built on NumPy, the performance difference can be attributed to Pandas overhead. For larger datasets Pandas' hash tables and columnar data format gives it the upperhand on many operations. 
+1. The performance claims only hold for small datasets, 1,000-100,000 numpy rows. There is however many PandaPy operations that improve relative to Pandas as the number of rows increase: rename, column drop, fillna mean, correlation matrix, filter (npx > 0), value reads(a=array[col]), singular value acces (array[col][pos]), atomic functions (sqrt, power), and np. calculations differences even out (np.log, np.exp, etc).
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
 4. For simple calculations on a small dataset (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
