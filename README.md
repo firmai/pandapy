@@ -15,7 +15,7 @@ import pandapy as pp
 
 
 1. Maintains the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
-1. If you have smaller pandas dataframes (<50K number of records) in a production environment, then it is worth considering PandaPy, you will see a significant speed up and reduction in memory usage.
+1. If you have smaller pandas dataframes (<50K number of records) in a production environment, then it is worth considering PandaPy, you will see a significant speed up and a large reduction in memory usage.
 1. When using mized data types (int, float, datatime, str), PandaPy generally consumes (roughly a 1/3rd) less memory than Pandas.
 1. Pandas outperform PandaPy at the same point when Pandas outperform __NumPy__. NumPy generally performs better than pandas for 50K rows or less. Pandas generally performs better than numpy for 500K rows or more; from 50K to 500K rows it is a toss up depending on the operation.
 1. Because both Pandas and PandaPy is built on NumPy, the performance difference can be attributed to Pandas overhead. For larger datasets Pandas' hash tables and columnar data format gives it the upperhand on many operations. 
