@@ -17,9 +17,9 @@ import pandapy as pp
 1. The performance claims only hold for small datasets, 1,000-100,000 numpy rows. Pandas perform better with larger data sets, the only functions that improve with a 1000x increase in size is rename, column drop, fillna mean, correlation matrix, value reads, and np calculations even out (np.log, np.exp as well as ** etc)  
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
-4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
-5. For table functions (i.e., group, pivot, drop, concat, fillna) PandaPy is 5x - 100x times faster than Pandas.
-6. For most use cases, PandaPy is faster than Dask, Modin Ray and Pandas.
+4. For simple calculations on a small dataset (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
+5. For table functions (i.e., group, pivot, drop, concat, fillna) on a small data set PandaPy is 5x - 100x times faster than Pandas.
+6. For most use cases with small data, PandaPy is faster than Dask, Modin Ray and Pandas.
 7. The best competing python package for performance on table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than  PandaPy. 
 8. The problem is that datatable is 5x - 10x slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, have very few complementary libraries, e.g. matplotlib, and doesn't leave you in a Numpy datatype. 
 9. For finance applications the speed of simple calculations takes preference over table function speed.
