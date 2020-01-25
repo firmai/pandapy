@@ -14,7 +14,7 @@ import pandapy as pp
 #### Why PandaPy? 
 
 1. Maintains the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
-1. The performance claims only hold for small datasets, 1,000-100,000 numpy rows.  
+1. The performance claims only hold for small datasets, 1,000-100,000 numpy rows. Pandas perform better with larger data sets, the only functions that improve with a 1000x increase in size is rename, column drop, fillna mean, correlation matrix, value reads, and np calculations even out (np.log, np.exp as well as ** etc)  
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
 4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
