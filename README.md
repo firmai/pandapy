@@ -13,18 +13,24 @@ import pandapy as pp
 
 #### Why PandaPy? 
 
+
 1. Maintains the full functionality and speed of structured NumPy datatype (eg., ```array[col1] + array[col2], or np.log(array[col1]```)
+1. If you have smaller pandas dataframes (<50K number of records) in a production environment, then it is worth considering PandaPy, you will see a significant speed up and a large reduction in memory usage.
+1. When using mized data types (int, float, datatime, str), PandaPy generally consumes (roughly a 1/3rd) less memory than Pandas.
+1. Pandas outperform PandaPy at the same point when Pandas outperform __NumPy__. NumPy generally performs better than pandas for 50K rows or less. Pandas generally performs better than numpy for 500K rows or more; from 50K to 500K rows it is a toss up depending on the operation.
+1. Because both Pandas and PandaPy is built on NumPy, the performance difference can be attributed to Pandas overhead. For larger datasets Pandas' hash tables and columnar data format gives it the upperhand on many operations. 
+1. The performance claims therefore hold for small datasets, 1,000-100,000 numpy rows. There is however many PandaPy operations that improve relative to Pandas as the number of rows increase: rename, column drop, fillna mean, correlation matrix, filter (``array > 0``), value reads(```a=array[col]```), singular value access (```array[col][pos]```), atomic functions (```sqrt, power```), and np. calculations differences even out (```np.log, np.exp```, etc).
 2. Provides wrapper functions over NumPy to give you the usability of Pandas (eg., ```pp.group(array, [col1, col2, col2], ['mean', 'std'], ['Adj_Close','Close'])```
 3. If you need Pandas for speciality functions, you can easily ```df = pp.pandas(array)``` and back ```array = pp.structured(df)```
-4. For simple calculations (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
-5. For table functions (i.e., group, pivot, drop, concat, fillna) PandaPy is 5x - 100x times faster than Pandas.
-6. For most use cases, PandaPy is faster than Dask, Modin Ray and Pandas.
+4. For simple calculations on a small dataset (i.e, plus, mult, log) PandaPy is 25x - 80x faster than Pandas.
+5. For table functions (i.e., group, pivot, drop, concat, fillna) on a small data set PandaPy is 5x - 100x times faster than Pandas.
+6. For most use cases with small data, PandaPy is faster than Dask, Modin Ray and Pandas.
 7. The best competing python package for performance on table functions is [datatable](https://github.com/h2oai/datatable), it is 2x - 10x faster than  PandaPy. 
 8. The problem is that datatable is 5x - 10x slower with simple calculations (plus, mult, returns), it is less intuitive, does not have a large range of functions, have very few complementary libraries, e.g. matplotlib, and doesn't leave you in a Numpy datatype. 
 9. For finance applications the speed of simple calculations takes preference over table function speed.
 10. PandaPy is not created to allow you to scale up to clusters for multiple computer processing like Dask, Modin, and Spark, instead it is focused on speed and usability within a single computer's Memory.
-11. Machines are getting large, EC2 X1 has 2TB of RAM and is remarkably affordable. If it can be done on a single machine then it should be done on a single machine. Quoting Dask - "For data that fits into RAM, Pandas can often be faster and easier to use than Dask DataFrame"
-12. If your dataset is very small you can load your data using PandaPy's ```read()``` function, for medium sized data, it is best to load it with datatable or pyspark and convert it to structured Numpy, if it is large pyspark, Dask, or Modin, if it is very large use pyspark. 
+11. Machines are getting large, EC2 X1 has 2TB of RAM and is remarkably affordable. If it can be done on a single machine then it should be done on a single machine. Quoting Dask - "For data that fits into RAM, Pandas {PandaPy, NumPy} can often be faster and easier to use than Dask DataFrame"
+12. If your dataset is very small you can load your data using PandaPy's ```read()``` function, for medium sized data, it is best to load it with datatable or pyspark and convert it to structured Numpy, if it is large, pyspark, Dask, or Modin, if it is very large use pyspark. 
 13. Lastly PandaPy can have as input any multidimensional object and does not have to conform to the basic NumPy datatypes. It can include nested datatypes, subarrays, functions as long as each column conforms to the array lenght, this allows for a great amount of flexibility. You can for example, ```add(array, "panda function",[[pd for i in range(len(multiple_stocks))]])``` to create a list of the panda (pd) module and access it along any index value ```array["panda function"][0].read_csv(url)```.
 
 PandaPy software, similar to the original Pandas project, is developed to improve the usability of python for finance. Structured datatypes are designed to be able to mimic ‘structs’ in the C language, and share a similar memory layout. PandaPy currently houses more than 30 functions. Structured NumPy are meant for interfacing with C code and for low-level manipulation of structured buffers, for example for interpreting binary blobs. For these purposes they support specialized features such as subarrays, nested datatypes, and unions, and allow control over the memory layout of the structure. 
