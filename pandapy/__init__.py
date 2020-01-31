@@ -100,6 +100,7 @@ def array_load(array: np.ndarray, newobs: np.ndarray) -> np.ndarray:
       newobs[n]=array[n]
     return newobs
 
+
 def add(array: np.ndarray, name_list: Union[list,str], value_list: Union[list,np.ndarray,str,int,float],types: str = None) -> np.ndarray:
     
     """
@@ -112,7 +113,7 @@ def add(array: np.ndarray, name_list: Union[list,str], value_list: Union[list,np
                       when not provided it is deduced from the data. 
     :return newobs : np.ndarray(structured), returns the full array with the newly added fields.
     """   
-    
+
     dt = [(val, key) for (val, key) in array.dtype.descr if val!='']
     if (len(name_list)==1) or (type(name_list)==str):
         if (types == None):
@@ -132,12 +133,28 @@ def add(array: np.ndarray, name_list: Union[list,str], value_list: Union[list,np
         else:
             newobs[name]=value_list
     else:
-        dt = dt + [(new, val.dtype.descr[0][1]) for new, val in zip(name_list ,value_list )]
+        try:
+          dt = dt + [(new, val.dtype.descr[0][1]) for new, val in zip(name_list ,value_list )]
+        except:
+          if (types == None):
+              try:
+                ty = type(value_list[0])
+              except:
+                ty = type(value_list)
+          else:
+            ty = types
+
+          dt = dt + [(new, ty) for new in name_list]
+
         newobs = np.empty(array.shape, dtype=dt)
         newobs = array_load(array, newobs)
-        for new, val in zip(name_list ,value_list ):
-            newobs[new]=val
-  
+
+        if type(value_list)!=list:
+          for new in name_list:
+              newobs[new]=value_list
+        else:
+            for new, val in zip(name_list ,value_list ):
+              newobs[new]=val
     return newobs
 
 ## Actually slow rather use array[col] = values, unless you want to change dtype
