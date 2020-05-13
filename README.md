@@ -12,6 +12,12 @@
 ```python
 import pandapy as pp
 ```
+**Cite**
+
+Snow, Derek (2020), *PandaPy: A Wrapper Around Structured Arrays to Mimic ‘structs’ in the C Language*, SSRN
+
+
+
 
 #### Why PandaPy? 
 
