@@ -16,8 +16,15 @@ import pandapy as pp
 
 Snow, Derek (2020), *PandaPy: A Wrapper Around Structured Arrays to Mimic ‘structs’ in the C Language*, SSRN
 
-
-
+```
+@software{pandapy,
+  title = {{PandaPy}: A Wrapper Around Structured Arrays to Mimic ‘structs’ in the C Language.},
+  author = {Snow, Derek},
+  url = {https://github.com/firmai/pandapy/},
+  version = {1.11},
+  date = {2020-05-13},
+}
+```
 
 #### Why PandaPy? 
 
