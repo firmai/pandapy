@@ -65,6 +65,7 @@ PandaPy comes with similar functionality like Pandas, such as groupby, pivot, an
 2. Test and explore the package with this [Google Colab Notebook](https://colab.research.google.com/drive/1j45o36_FFIof9uzp1DoyzxETD4lfpci5).
 3. Get in touch on [LinkedIn](https://www.linkedin.com/company/firmai) or [Twitter](https://twitter.com/dereknow?lang=en).
 4. Use ```table(array)``` to get a pandas looking table printout
+5. You can read the paper on [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3599639) for a little more information. 
 
 ### Functions
 
