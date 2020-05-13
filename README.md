@@ -2,19 +2,7 @@
 
 > "I came across PandaPy last week and have already used it in my current project. It is a fascinating Python library with a lot of potential to become mainstream."
 
-**Install**
-
-```
-!pip3 install pandapy
-```
-
-**Load**
-```python
-import pandapy as pp
-```
-**Cite**
-
-Snow, Derek (2020), *PandaPy: A Wrapper Around Structured Arrays to Mimic ‘structs’ in the C Language*, SSRN
+Snow, Derek (2020), *[PandaPy](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3599639): A Wrapper Around Structured Arrays to Mimic ‘structs’ in the C Language*, SSRN
 
 ```
 @software{pandapy,
@@ -24,6 +12,17 @@ Snow, Derek (2020), *PandaPy: A Wrapper Around Structured Arrays to Mimic ‘str
   version = {1.11},
   date = {2020-05-13},
 }
+```
+
+**Install**
+
+```
+!pip3 install pandapy
+```
+
+**Load**
+```python
+import pandapy as pp
 ```
 
 #### Why PandaPy? 
