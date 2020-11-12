@@ -1,5 +1,7 @@
 ## PandaPy
 
+[![DOI](https://zenodo.org/badge/234144397.svg)](https://zenodo.org/badge/latestdoi/234144397)
+
 > "I came across PandaPy last week and have already used it in my current project. It is a fascinating Python library with a lot of potential to become mainstream."
 
 
