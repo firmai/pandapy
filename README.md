@@ -21,6 +21,14 @@ Snow, Derek (2020), PandaPy: A Wrapper Around Structured Arrays to Mimic ‘stru
 }
 ```
 
+---------
+
+## Sponsor Sov.ai Research Lab
+
+Animated investment research at [Sov.ai](https://sov.ai), sponsoring open source initiatives.
+
+---------
+
 **Install**
 
 ```
